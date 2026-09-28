@@ -7,9 +7,11 @@ lock dependencies with `uv.lock`.
 
 ## Reporting a vulnerability
 
-Do not open a public issue for a security vulnerability. Contact the service owners
-through the repository's private security channel with a reproduction, impact,
-and affected version. We will acknowledge reports within five business days.
+Do not open a public issue for a security vulnerability. Once this repository is
+published, use its GitHub **Security** tab and **Report a vulnerability** form. If
+private reporting is not enabled yet, contact the repository maintainer through
+their GitHub profile before sharing details. Include a reproduction, impact, and
+affected version. We will acknowledge reports within five business days.
 
 ## Security controls
 

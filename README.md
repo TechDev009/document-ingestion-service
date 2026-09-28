@@ -9,9 +9,8 @@ independent repository in the workspace and has its own Git history.
 Python 3.12+ (3.13 is used in CI) and [uv](https://docs.astral.sh/uv/) are required.
 
 ```sh
-cd apps/03-document-ingestion-service
 cp .env.example .env
-uv sync --dev
+uv sync --locked
 uv run uvicorn document_ingestion.main:app --reload
 ```
 
@@ -89,6 +88,11 @@ docker compose up --build
 
 The Compose API runs `alembic upgrade head` before serving. The worker runs the
 `document-worker` entry point and consumes durable, persistent RabbitMQ messages.
+For a standalone worker process, run:
+
+```sh
+uv run document-worker
+```
 Replace the example credentials, put secrets in a secret manager, use real S3 and
 TLS, and scale API and worker processes independently. In production set
 `AUTO_CREATE_SCHEMA=false`; only the deployment migration step may change schema.
@@ -149,3 +153,10 @@ authentication, authorization, quota, tenant partitioning, or virus scanner.
 ## License
 
 MIT; see `LICENSE`.
+
+## Public release / status
+
+- **Local quickstart:** Copy `.env.example`, run `uv sync --locked`, and start Uvicorn as shown in [Quick start (local, no cloud credentials)](#quick-start-local-no-cloud-credentials).
+- **CI/tests:** GitHub Actions runs pytest, Ruff lint and formatting checks, Pyright, and `pip-audit`; local tests use temporary SQLite and filesystem storage without cloud credentials.
+- **Limitations:** OCR, built-in authentication/authorization, quotas, tenant partitioning, and a virus scanner are not included; the local queue is not durable across process loss. See [Limitations](#limitations).
+- **Production:** Real production deployment requires operator-managed credentials, TLS and security controls, durable infrastructure, and cloud/deployment infrastructure; the repository provides local and production-like building blocks, not a hosted service.
