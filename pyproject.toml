@@ -8,7 +8,7 @@ license = { file = "LICENSE" }
 authors = [{ name = "AI SaaS Foundation" }]
 dependencies = [
   "alembic>=1.14,<2",
-  "aio-pika>=9.4,<10",
+  "aio-pika>=9.4,<11",
   "aiosqlite>=0.20,<1",
   "boto3>=1.35,<2",
   "fastapi>=0.115,<1",
